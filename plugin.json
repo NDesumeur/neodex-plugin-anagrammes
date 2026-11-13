@@ -1,0 +1,24 @@
+{
+  "id": "neodex.anagrammes",
+  "name": "Anagrammes",
+  "version": "1.0.0",
+  "author": "NDesumeur",
+  "description": "Anagrammes en pixel art : les lettres d'un mot sont mélangées, remets-les dans l'ordre avant la fin du temps. 5 mots par niveau, de 4 à 9 lettres, plus de 350 mots courants. Un autre mot avec les mêmes lettres compte aussi. Clavier, souris ou manette, indices et records.",
+  "icon": "icon.png",
+  "entry": "index.js",
+  "view": "anagrammes",
+  "neobase": ">=4.0.0",
+  "type": "app",
+  "category": "Jeux",
+  "compatibility": ["windows", "linux"],
+  "syncMode": "progression",
+  "syncInfo": "Niveau atteint et records.",
+  "gamepad": true,
+  "mobile": false,
+  "system": false,
+  "dependencies": {},
+  "sdk": "2.1.0",
+  "permissions": [
+    "storage"
+  ]
+}
