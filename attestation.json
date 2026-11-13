@@ -1,0 +1,9 @@
+{
+  "pluginId": "neodex.anagrammes",
+  "repo": "NDesumeur/neodex-plugin-anagrammes",
+  "version": "1.0.0",
+  "sha256": "b02ddb897e8eed95e3f71997cd280507e9bc7d22b6da147ee61bee3087669db2",
+  "approvedAt": "2026-11-13T23:16:58.830Z",
+  "neobase": ">=4.0.0",
+  "signature": "DrqmRv1imFWNa2WR59NaS6AiNvXrwIHzcYQvLKxGOyA1+CDE1vaJ4eIwcUCcWeUJnH3GH/rVwwPsd3snwkYNDg=="
+}
