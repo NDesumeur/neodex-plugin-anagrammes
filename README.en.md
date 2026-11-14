@@ -14,9 +14,13 @@ The letters of a French word are mixed up: put them back in order before time ru
 ## How it works
 
 - 5 words per level, from **4 to 9 letters** as you go.
-- **Another word** using all the letters counts too.
+- Nearly **1700 common French words**, and each word you find shows **its definition** (in French).
+- **Another word** using all the letters earns a **bonus**.
+- Find words fast and without hints to build a **combo**: ×2, then ×3.
 - A **hint** places the next letter but costs points; time left earns points.
+- At the end of a level, a **recap**: each word, its time, the hints used, and 1 to 3 **stars**.
+- **Fullscreen** button at the top right of the game.
 
 ## Data and sync
 
-Your level and records are saved by NeoDex and synced between your PCs if sync is on.
+Your level, stars and records are saved by NeoDex and synced between your PCs if sync is on.

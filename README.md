@@ -14,13 +14,17 @@ Les lettres d’un mot ont été mélangées : remets-les dans l’ordre avant l
 ## Comment ça marche
 
 - 5 mots par niveau. Ils s’allongent tous les deux niveaux, de **4 à 9 lettres**.
-- Un **autre mot** qui utilise toutes les lettres compte aussi (NICHE pour CHIEN).
+- Près de **1700 mots courants**, et chaque mot trouvé montre **sa définition** (sur le jeu et dans la colonne « Mots du niveau »).
+- Un **autre mot** qui utilise toutes les lettres rapporte un **bonus** (NICHE pour CHIEN).
+- Trouve vite et sans indice pour enchaîner un **combo** : ×2, puis ×3.
 - Un **indice** place la lettre suivante, mais coûte des points ; le temps qui reste en rapporte.
-- Le temps fini, la partie s’arrête et le mot s’affiche.
+- À la fin du niveau, un **bilan** : chaque mot, son temps, les indices pris, et de 1 à 3 **étoiles**.
+- Le temps fini, la partie s’arrête et le mot s’affiche avec sa définition.
+- Bouton **Plein écran** en haut à droite du jeu.
 
 ## Données et synchronisation
 
-Le niveau atteint et les records sont enregistrés par NeoDex, sauvegardés et synchronisés entre tes PC si la synchro est activée.
+Le niveau atteint, les étoiles et les records sont enregistrés par NeoDex, sauvegardés et synchronisés entre tes PC si la synchro est activée.
 
 ## Installer
 
