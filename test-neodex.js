@@ -18,6 +18,25 @@ module.exports = async ({ pj, sleep }) => {
   const n = await pj(`document.querySelectorAll('#anFound .anW').length`); if (n !== 5) throw new Error(n + ' mots dans la colonne au lieu de 5');
   const lay = await pj(`(() => { const c = document.getElementById('anCanvas').getBoundingClientRect(), s = document.querySelector('.gSide').getBoundingClientRect(); return { beside: s.left >= c.right - 1, fits: c.right <= innerWidth + 1 && document.documentElement.scrollWidth <= innerWidth + 1, w: innerWidth }; })()`);
   if (!lay.fits || (lay.w >= 700 && !lay.beside)) throw new Error('mise en page : ' + JSON.stringify(lay));
+  // le mode « tous les mots » : un mot trouvé, un faux mot refusé, un mot bonus, puis tout aux indices ; la partie du jour comptée avec sa série
+  const W = code => pj('(() => { const ws = document.getElementById("anCanvas").__ws(); ' + code + ' })()');
+  const mode = v => pj("(() => { const s = document.getElementById('anMode'); s.value = '" + v + "'; s.dispatchEvent(new Event('change')); return 0; })()");
+  const typeW = async w => { for (const c of w) { await key(c); await sleep(30); } await key('Enter'); await sleep(120); };
+  await mode('tous'); await sleep(300);
+  const tg = await W('return ws.targets;'); if (!(tg.length >= 8 && tg.length <= 24)) throw new Error('tous les mots : ' + tg.length + ' mots');
+  await typeW(tg[0]); if (await W('return ws.found.size;') !== 1) throw new Error('tous les mots : mot refusé ' + tg[0]);
+  const base = await W('return ws.base;'), wrong = [...base].sort().join('').slice(0, 4);
+  await typeW(wrong); const after = await W('return ws.found.size + "|" + ws.bonus.size + "|" + ws.msg;'); if (!/^1\|[01]\|(Pas dans la liste|Mot bonus)/.test(after)) throw new Error('faux mot : ' + after);
+  await shot('tous-les-mots');
+  for (let i = 0; i < 200 && !(await W('return ws.done;')); i++) { await key('Tab'); await sleep(15); }
+  await sleep(500); if (!(await W('return ws.done && ws.found.size === ws.targets.length;'))) throw new Error('tous les mots : pas fini aux indices');
+  await shot('tous-fini');
+  await mode('jour'); await sleep(300); const d1 = await W('return ws.base;'); await mode('jour'); await sleep(200);
+  if (await W('return ws.base;') !== d1) throw new Error('la partie du jour change');
+  for (const w of await W('return ws.targets;')) await typeW(w);
+  await sleep(400); if (!/Partie du jour\W+sans indice\W+série\W+1/.test(await pj("document.getElementById('anStats').textContent"))) throw new Error('partie du jour pas comptée : ' + await pj("document.getElementById('anStats').textContent"));
+  await shot('jour-fini');
+  await mode('niveaux'); await sleep(200); if (await W('return ws;') !== null) throw new Error('retour aux niveaux');
   await pj(`document.getElementById('anFs').click(), 0`); await sleep(700);
   const fs = await pj(`(() => { const c = document.getElementById('anCanvas'); return document.fullscreenElement === c.parentElement && Math.abs(c.getBoundingClientRect().height - innerHeight) < 3; })()`);
   await pj(`document.fullscreenElement && document.exitFullscreen(), 0`); await sleep(300);

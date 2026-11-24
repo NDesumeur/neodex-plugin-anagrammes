@@ -4,6 +4,10 @@ Les lettres d’un mot ont été mélangées : remets-les dans l’ordre avant l
 
 *English version: [README.en.md](README.en.md)*
 
+## Tous les mots et partie du jour (nouveau en 1.2.0)
+
+Le menu **Mode** propose deux nouvelles façons de jouer. **Tous les mots** : sept lettres, et tous les mots courants de 4 lettres et plus qu'on peut écrire avec, à trouver (entre 8 et 24 par grille). Les cases montrent la longueur de chaque mot ; Tab dévoile une lettre ; un autre vrai mot compte en bonus. Pas de chrono. **Partie du jour** : les mêmes sept lettres pour tout le monde, nouvelles chaque jour, avec la série de jours finis d'affilée. Les mots viennent de Lexique 3.83 (lexique.org, licence CC BY-SA 4.0).
+
 ## Commandes
 
 - **Clavier** : tape les lettres du mot, **Retour arrière** pour enlever la dernière.

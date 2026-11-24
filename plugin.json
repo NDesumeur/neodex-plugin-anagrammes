@@ -1,9 +1,9 @@
 {
   "id": "neodex.anagrammes",
   "name": "Anagrammes",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "author": "NDesumeur",
-  "description": "Anagrammes en pixel art : les lettres d'un mot sont mélangées, remets-les dans l'ordre avant la fin du temps. Près de 1700 mots courants de 4 à 9 lettres, chacun avec sa définition. Combo pour les mots trouvés vite, bonus pour un autre mot, bilan à étoiles. Clavier, souris ou manette, plein écran.",
+  "description": "Anagrammes en pixel art : les lettres d'un mot sont mélangées, remets-les dans l'ordre avant la fin du temps. Près de 1700 mots courants de 4 à 9 lettres, chacun avec sa définition. Combo pour les mots trouvés vite, bonus pour un autre mot, bilan à étoiles. Clavier, souris ou manette, plein écran. Anagrammes en pixel art : les lettres d'un mot sont mélangées, remets-les dans l'ordre avant la fin du temps. Près de 1700 mots courants de 4 à 9 lettres, chacun avec sa définition. Nouveau mode « tous les mots » : sept lettres et tous les mots qu'elles cachent à trouver, mots bonus, sans chrono ; et une partie du jour avec sa série. Combo, bilan à étoiles, clavier, souris ou manette, plein écran.",
   "icon": "icon.png",
   "entry": "index.js",
   "view": "anagrammes",
