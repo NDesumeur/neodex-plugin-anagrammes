@@ -1,7 +1,7 @@
 {
   "id": "neodex.anagrammes",
   "name": "Anagrammes",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": "NDesumeur",
   "description": "Anagrammes en pixel art : les lettres d'un mot sont mélangées, remets-les dans l'ordre avant la fin du temps. Près de 1700 mots courants de 4 à 9 lettres, chacun avec sa définition. Combo pour les mots trouvés vite, bonus pour un autre mot, bilan à étoiles. Clavier, souris ou manette, plein écran. Anagrammes en pixel art : les lettres d'un mot sont mélangées, remets-les dans l'ordre avant la fin du temps. Près de 1700 mots courants de 4 à 9 lettres, chacun avec sa définition. Nouveau mode « tous les mots » : sept lettres et tous les mots qu'elles cachent à trouver, mots bonus, sans chrono ; et une partie du jour avec sa série. Combo, bilan à étoiles, clavier, souris ou manette, plein écran.",
   "icon": "icon.png",
@@ -23,5 +23,57 @@
   "sdk": "2.1.0",
   "permissions": [
     "storage"
+  ],
+  "succes": [
+    {
+      "id": "n5",
+      "nom": "Bon démêleur",
+      "texte": "Atteindre le niveau 5"
+    },
+    {
+      "id": "n10",
+      "nom": "Neuf lettres",
+      "texte": "Atteindre le niveau 10"
+    },
+    {
+      "id": "n20",
+      "nom": "Maître des lettres",
+      "texte": "Atteindre le niveau 20",
+      "cache": true
+    },
+    {
+      "id": "mots500",
+      "nom": "Dictionnaire vivant",
+      "texte": "Trouver 500 mots en mode Niveaux"
+    },
+    {
+      "id": "tous",
+      "nom": "Sept lettres",
+      "texte": "Finir une grille « Tous les mots »"
+    },
+    {
+      "id": "bonus",
+      "nom": "Fouineur",
+      "texte": "Trouver 50 mots bonus"
+    },
+    {
+      "id": "jour7",
+      "nom": "Une semaine de mots",
+      "texte": "Réussir la partie du jour 7 jours de suite"
+    }
+  ],
+  "records": [
+    {
+      "id": "score",
+      "nom": "Meilleur score",
+      "sens": "haut",
+      "format": "nombre"
+    },
+    {
+      "id": "niveau",
+      "nom": "Niveau atteint",
+      "sens": "haut",
+      "format": "nombre"
+    }
   ]
 }

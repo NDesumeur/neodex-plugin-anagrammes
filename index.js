@@ -2074,6 +2074,9 @@ export default async function (ctx) {
   const save = { level: 1, best: 0, words: 0, games: 0, stars: {}, ...(await doc('records')) };
   save.mode ??= 'niveaux'; save.tous ??= {games: 0, words: 0, bonus: 0, hints: 0}; save.day ??= {last: '', lastWon: '', streak: 0, max: 0, res: ''};
   let keepT = 0; const keep = () => { clearTimeout(keepT); keepT = setTimeout(() => folder.write('records', save).catch(() => {}), 250); };  // un seul envoi quand les mots s'enchaînent
+  // les trophées de NeoDex (3.4.8 et plus) : succès et records déclarés dans plugin.json ; sur un NeoDex plus ancien, rien ne se passe
+  const trophy = id => { ctx.games?.unlock(id).catch(() => {}); };
+  const trophyRecord = (id, v) => { if (v != null && Number.isFinite(+v)) ctx.games?.record(id, +v).catch(() => {}); };
   const sorted = w => [...w].sort().join('');
   const lenFor = lvl => Math.min(9, 4 + Math.floor((lvl - 1) / 2));
   const shuffle = (w, r = Math.random) => { const a = [...w]; for (let t = 0; t < 20; t++) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } if (a.join('') !== w) break; } return a; };
@@ -2265,6 +2268,7 @@ export default async function (ctx) {
       + (st.mode === 'found' ? ', mot trouvé : ' + st.done[st.done.length - 1].w : st.mode === 'level' ? ', niveau fini, ' + st.stars + ' étoiles' : st.mode === 'over' ? ', temps écoulé' : '') + '.');
   }
   function info() {
+    setTimeout(anTrophies);
     const stars = Object.values(save.stars || {}).reduce((a, b) => a + b, 0);
     $('anMode').value = ws ? ws.kind : 'niveaux';
     if (ws) return $('anStats').replaceChildren(...[['Grilles finies', save.tous.games], ['Mots trouvés', save.tous.words], ['Mots bonus', save.tous.bonus], ['Partie du jour', (save.day.last === anToday() ? save.day.res : 'à faire') + ' · série ' + save.day.streak + (save.day.max > save.day.streak ? ' (record ' + save.day.max + ')' : '')]].flatMap(([a, c]) => [el('span', '', a), el('b', '', String(c))]));
@@ -2332,5 +2336,12 @@ export default async function (ctx) {
   start(save.level); if (save.mode !== 'niveaux') wsStart(save.mode);
   const STEP = 1000 / 60; let acc = 0, last = performance.now(), raf = 0;
   const frame = t => { if (!on()) { raf = 0; if (st.mode === 'play') st.mode = 'pause'; return; } raf = requestAnimationFrame(frame); acc += Math.min(200, t - last); last = t; while (acc >= STEP) { ws ? wsUpdate() : update(); acc -= STEP; } ws ? wsDraw() : draw(); };
+  // les trophées, tirés des statistiques et des records gardés (aussi à l'ouverture : ce qui a été fait avant compte)
+  function anTrophies() {
+    const sig = [save.level, save.best, save.words, save.tous.games, save.tous.bonus, save.day.max].join(); if (sig === anTrophies.sig) return; anTrophies.sig = sig;
+    trophyRecord('score', save.best || null); trophyRecord('niveau', save.words ? save.level : null);
+    if (save.level >= 5) trophy('n5'); if (save.level >= 10) trophy('n10'); if (save.level >= 20) trophy('n20'); if (save.words >= 500) trophy('mots500');
+    if (save.tous.games >= 1) trophy('tous'); if (save.tous.bonus >= 50) trophy('bonus'); if (save.day.max >= 7) trophy('jour7');
+  }
   ctx.onOpen(() => { g ??= $('anCanvas').getContext('2d'); info(); last = performance.now(); if (!raf) raf = requestAnimationFrame(frame); });
 }
